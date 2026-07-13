@@ -60,7 +60,7 @@ jobs:
           tags: |
             type=sha,format=short,prefix=,suffix=
             type=sha,format=long,prefix=,suffix=
-            type=ref,format=short,prefix=,suffix
+            type=ref,format=short,prefix=,suffix=
 
       - name: Build and push image
         uses: docker/build-push-action@v5
