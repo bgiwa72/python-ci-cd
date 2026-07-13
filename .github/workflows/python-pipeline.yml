@@ -99,7 +99,7 @@ jobs:
 
       - name: Run tests using the container image
         run:
-          docker exec $SERVICE_NAME
+          docker exec $SERVICE_NAME ls
 
       - name: Stop ${{ env.SERVICE_NAME }}
         run: docker stop $SERVICE_NAME
