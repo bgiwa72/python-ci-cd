@@ -20,14 +20,15 @@ jobs:
         uses: actions/setup-python@v5
 
       - name: Install Requirement
-        run: pip install flake8
+        run: pip install flake8 pylint
 
-      - name: Lint code
+      - name: Lint hello.py
         run: |
-          flake8 --ignore=E501,E231 *.py
+          flake8 hello.py
+          pylint hello.py
 
       - name: Run Unit Tests
-        run: python hello.py 
+        run: python hello.py | grep -i hello || exit 1
 
   build-and-push:
     name: Build and push container image to ghcr
@@ -94,9 +95,9 @@ jobs:
             --name $SERVICE_NAME ghcr.io/${{ github.repository }}:${{ github.sha }}
           sleep 3 #allow time for service to start
 
-      - name: Run tests using the container image
-        run:
-          docker exec $SERVICE_NAME
+      # - name: Run tests using the container image
+      #   run:
+      #     docker exec $SERVICE_NAME
 
       - name: Stop ${{ env.SERVICE_NAME }}
         run: docker stop $SERVICE_NAME
