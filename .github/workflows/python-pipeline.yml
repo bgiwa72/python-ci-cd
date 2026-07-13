@@ -97,9 +97,9 @@ jobs:
             --name $SERVICE_NAME ghcr.io/${{ github.repository }}:${{ github.sha }}
           sleep 3 #allow time for service to start
 
-      # - name: Run tests using the container image
-      #   run:
-      #     docker exec $SERVICE_NAME
+      - name: Run tests using the container image
+        run:
+          docker exec $SERVICE_NAME
 
       - name: Stop ${{ env.SERVICE_NAME }}
         run: docker stop $SERVICE_NAME
