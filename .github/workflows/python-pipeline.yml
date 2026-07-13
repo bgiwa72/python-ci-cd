@@ -80,7 +80,7 @@ jobs:
 
     steps:
       - name: Log into ghcr.io
-        run: docker/login-action@v3
+        uses: docker/login-action@v3
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
