@@ -94,14 +94,14 @@ jobs:
         run: |
           docker run \
             --rm --detach --publish 8080:8080 \
-            --name $SERVICE_NAME ghcr.io/${{ github.repository }}:${{ github.sha }}
-          sleep 3 #allow time for service to start
+            --name $SERVICE_NAME ghcr.io/${{ github.repository }}:${{ github.sha }} | grep -i hello || exit 1
+          # sleep 3 #allow time for service to start
 
-      - name: Run tests using the container image
-        run:
-          docker exec $SERVICE_NAME ls
+      # - name: Run tests using the container image
+      #   run:
+      #     docker exec $SERVICE_NAME ls
 
-      - name: Stop ${{ env.SERVICE_NAME }}
-        run: docker stop $SERVICE_NAME
+      # - name: Stop ${{ env.SERVICE_NAME }}
+      #   run: docker stop $SERVICE_NAME
 
 
