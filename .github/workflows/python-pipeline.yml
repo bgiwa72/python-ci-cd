@@ -95,7 +95,7 @@ jobs:
           # docker run \
           #   --rm --detach --publish 8080:8080 \
           #   --name $SERVICE_NAME ghcr.io/${{ github.repository }}:${{ github.sha }} | grep -i hello || exit 1
-          docker run --rm python:3.13-slim cat /etc/os-release | grep DEBIAN_VERSION_FUL || exit 1
+          docker run --rm python:3.13-slim cat /etc/os-release | grep DEBIAN_VERSION_BASH || exit 1
           docker run --rm --name $SERVICE_NAME ghcr.io/${{ github.repository }}:${{ github.sha }} | grep -i hello || exit 1
           # sleep 3 #allow time for service to start
 
