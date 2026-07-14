@@ -92,18 +92,10 @@ jobs:
 
       - name: Run Python Script image ${{ env.SERVICE_NAME }}
         run: |
-          # docker run \
-          #   --rm --detach --publish 8080:8080 \
-          #   --name $SERVICE_NAME ghcr.io/${{ github.repository }}:${{ github.sha }} | grep -i hello || exit 1
-          docker run --rm python:3.13-slim cat /etc/os-release | grep DEBIAN_VERSION_BASH || exit 1
-          docker run --rm --name $SERVICE_NAME ghcr.io/${{ github.repository }}:${{ github.sha }} | grep -i hello || exit 1
-          # sleep 3 #allow time for service to start
-
-      # - name: Run tests using the container image
-      #   run:
-      #     docker exec $SERVICE_NAME ls
-
-      # - name: Stop ${{ env.SERVICE_NAME }}
-      #   run: docker stop $SERVICE_NAME
+          docker run --rm --name $SERVICE_NAME python:3.13-slim cat /etc/os-release | grep DEBIAN_VERSION_FULL || exit 1
+          docker run \
+            --rm --name $SERVICE_NAME ghcr.io/${{ github.repository }}:${{ github.sha }} \
+            | grep -i hello || exit 1
+          
 
 
